@@ -11,9 +11,10 @@ namespace ETHotfix
             {
                 // 创建一个ETModel层的Session
                 ETModel.Session session = ETModel.Game.Scene.GetComponent<NetOuterComponent>().Create(GlobalConfigComponent.Instance.GlobalProto.Address);
-				
+
                 // 创建一个ETHotfix层的Session, ETHotfix的Session会通过ETModel层的Session发送消息
                 Session realmSession = ComponentFactory.Create<Session, ETModel.Session>(session);
+
                 R2C_Login r2CLogin = (R2C_Login) await realmSession.Call(new C2R_Login() { Account = account, Password = "111111" });
                 realmSession.Dispose();
 
